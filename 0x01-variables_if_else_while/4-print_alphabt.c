@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - main function
+ * main - the main function
  *
  * Return: executes to 0
  */
@@ -16,3 +16,4 @@ int main(void)
 	putchar('\n');
 	return (0);
 }
+
