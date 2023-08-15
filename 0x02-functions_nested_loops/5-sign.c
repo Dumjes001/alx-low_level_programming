@@ -1,12 +1,11 @@
 #include "main.h"
 
 /**
- * print-sign - print + if n is greater than zero.
- * 		print 0 if n is zero and - if n is lesse
- * 		than zero.
- * @c: this takes and integer typr input for function.
+ * print_sign - print + if n is greater than zero
  *
- * Return: this returns 1 if +, and 0 if 0 and -1 if 
+ * @n: 0 if n is zero and - if n is less than zero
+ *
+ * Return: returns the value appropriately
  */
 
 int print_sign(int n)
@@ -21,7 +20,7 @@ int print_sign(int n)
 		_putchar(48);
 		return (0);
 	}
-	else 
+	else
 	{
 		_putchar(45);
 		return (-1);
