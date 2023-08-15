@@ -2,9 +2,8 @@
 #include "main.h"
 
 /**
- * _putchar - the function writes the character c to output
- *
- * @c: This is to print the character input
+ * _putchar - this write the character c to output
+ * @c: This prints the character
  *
  * Return: on successful execution it returns 1
  */
