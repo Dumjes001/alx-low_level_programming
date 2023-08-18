@@ -6,11 +6,11 @@
  * Return: Always to 0
  */
 
- void more_number(void)
+void more_number(void)
 {
 	int num, row, count;
 
-	for (row = 2; row <= 10; row ++)
+	for (row = 2; row <= 10; row++)
 	{
 		for (count = 0; count <= 14; count++)
 		{
