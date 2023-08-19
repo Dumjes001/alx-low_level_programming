@@ -18,9 +18,9 @@ void print i_number(int n)
 	}
 
 	/*print the first few digits */
-	if ((num / 10) > 0)
+	if (num / 10 > 0)
 		print_number(num / 10);
 
 	/*print the last digit*/
-	_putchar((num % 10) + '0');
+	_putchar((num % 10) + 48);
 }
