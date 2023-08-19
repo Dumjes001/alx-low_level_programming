@@ -39,7 +39,7 @@ void largest_prime_factor(long int num)
 	
 	/* num must be odd so we proceed to the next prime number (plus two) */
 	for (prmNu = 3; prmNu <= _sqrt(num); prmNu += 2)
-	{
+	{ 
 		while (num % prmNu == 0)
 		{
 			num = num / prmNu;
@@ -54,8 +54,6 @@ void largest_prime_factor(long int num)
 
 /**
  * main - Entry point
- *
- * Return: Always 0
  */
 
 int main(void)
