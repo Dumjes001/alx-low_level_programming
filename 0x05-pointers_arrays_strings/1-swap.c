@@ -7,7 +7,7 @@
  * @a: integer for parameter 1
  * @b: integer for parameter 2
  *
- * @Return: Nothing
+ * Return: Nothing
  */
 
 void swap_int(int *a, int *b)
