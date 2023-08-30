@@ -15,7 +15,7 @@ int sqrt_a(int a, int b)
 	{
 		return (b);
 	}
-	else if (b * b > 4)
+	else if (b * b > a)
 	{
 		return (-1);
 	}
