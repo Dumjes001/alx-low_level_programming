@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 /**
- * main - multiples two numbers
- * @argc: number of command line in an argumnet
- * @argv: the array that contains the command line arg
+ * main - multiplies two numbers
+ * @argc: number of command line arguments
+ * @argv: array that contains the command line arguments
  *
  * Return: returns 0 when successful
  */
@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	printf("@d\n", atoi(argv[1]) * atoi(argv[2]);
+	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
 	return (0);
 }
+
