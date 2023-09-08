@@ -1,73 +1,106 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
- * ch_free_grid - Frees a 2D grid.
- * @grid: The 2D grid to free.
- * @height: The height of the grid.
+ * is_whitespace - Check if a character is a whitespace character.
+ * @c: The character to check.
+ *
+ * Return: 1 if it's a whitespace character, 0 otherwise.
  */
-
-void ch_free_grid(char **grid, size_t height)
+int is_whitespace(char c)
 {
-	size_t i;
-
-	if (grid != NULL && height != 0)
-	{
-		for (i = 0; i < height; i++)
-		{
-			free(grid[i]);
-		}
-		free(grid);
-	}
+	return (c == ' ' || c == '\t' || c == '\n');
 }
-
 /**
  * strtow - Splits a string into words.
  * @str: The input string.
- * Return: A pointer to the new allocated memory for the array of words.
+ *
+ * Return: A pointer to an array of strings (words). The last element of
+ *         the returned array is NULL. Returns NULL if str == NULL or str == "".
+ *         If the function fails, it returns NULL.
  */
-
 char **strtow(char *str)
 {
-	char **aout;
-	size_t c, height = 0, i, j, a1;
-
 	if (str == NULL || *str == '\0')
-		return (NULL);
-
-	for (c = 0; str[c] != '\0'; c++)
-	{
-		if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
-			height++;
-	}
-
-	aout = malloc(sizeof(char *) * (height + 1));
-	if (aout == NULL)
 	{
 		return (NULL);
 	}
+	int i, j, word_count = 0;
+	int in_word = 0;
+	char **words = NULL;
 
-	for (i = 0, a1 = 0; i < height; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		while (str[a1] == ' ')
-			a1++;
-
-		for (c = a1; str[c] != ' ' && str[c] != '\0'; c++)
-			;
-
-		aout[i] = malloc((c - a1 + 2) * sizeof(char));
-		if (aout[i] == NULL)
+		if (!is_whitespace(str[i]))
 		{
-			ch_free_grid(aout, i);
-			return (NULL);
+			if (!in_word)
+			{
+				in_word = 1;
+				word_count++;
+			}
 		}
-
-		for (j = 0; a1 <= c; a1++, j++)
-			aout[i][j] = str[a1];
-
-		aout[i][j] = '\0';
+		else
+		{
+			in_word = 0;
+		}
 	}
-	aout[i] = NULL;
-	return (aout);
-}
+	words = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (words == NULL)
+	{
+		return (NULL);
+	}
 
+	in_word = 0;
+	j = 0;
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (!is_whitespace(str[i]))
+		{
+			if (!in_word)
+			{
+				in_word = 1;
+				int word_length = 1;
+
+				while (str[i + word_length] != '\0' && !is_whitespace(str[i + word_length]))
+				{
+					word_length++;
+				}
+				words[j] = (char *)malloc(word_length + 1);
+				if (words[j] == NULL)
+				{
+					for (int k = 0; k < j; k++)
+					{
+						free(words[k]);
+					}
+					free(words);
+					return (NULL);
+				}
+				strncpy(words[j], &str[i], word_length);
+				words[j][word_length] = '\0';
+				j++;
+			}
+		}
+		else
+		{
+			in_word = 0;
+		}
+	}
+	words[word_count] = NULL;
+	return (words);
+}
+int main(void)
+{
+	char **words = strtow("  Hello  World  ");
+
+	if (words != NULL)
+	{
+		for (int i = 0; words[i] != NULL; i++)
+		{
+			printf("%s\n", words[i]);
+			free(words[i]);
+		}
+		free(words);
+	}
+	return (0);
+}
