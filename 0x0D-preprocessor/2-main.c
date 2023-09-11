@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - print out file name of source code 
+ * main - print out file name of source code
  *
  * Return: int
  */
