@@ -2,7 +2,7 @@
 
 /**
  * binary_to_uint - a program that converts binary numbers
- * to integers/decimals numbers
+ * to intgers/decimals numbers
  *
  * @b: a character pointer to a string containing the
  * binary numbers
@@ -12,25 +12,28 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int sum = 0;
+	unsigned int len;
+	size_t i = 0;
+	size_t j = 0;
+	size_t sum = 0;
+	size_t pow = 1;
+	int base = 2;
 
 	if (b == NULL)
 		return (0);
-
-	unsigned int len = 0;
-
-	while (b[len] != '\0')
+	for (len = 0; b[len] != '\0'; len++)
+		;
+	if (len == 1 && (b[0] == '0' || b[0] == '1'))
+		return (b[0] - 48);
+	for (i = 0; b[i] != '\0'; i++)
 	{
-		if (b[len] != '0' && b[len] != '1')
+		if (b[i] != '0' && b[i] != '1')
 			return (0);
-		len++;
+		for (j = len - 1; j > 0; j--)
+		pow = pow * base;
+		sum = sum + (pow * (b[i] - 48));
+		len--;
+		pow = 1;
 	}
-
-	for (unsigned int i = 0; i < len; i++)
-	{
-		sum = sum * 2 + (b[i] - '0');
-	}
-
 	return (sum);
 }
-
